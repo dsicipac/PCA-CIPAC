@@ -1,0 +1,1454 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/27/2021 2:07:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SVD-NDWH"
+  DTS:CreatorName="CIPAC\kpi.dwh"
+  DTS:DTSID="{48097C9F-A44C-4D53-A65B-C83AC7A65B6B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="1036"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="PCA-Article-Stock"
+  DTS:PackageType="5"
+  DTS:VersionBuild="112"
+  DTS:VersionGUID="{FCC9AB06-348E-4712-97D4-FF38896C38B6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PCA_Article_Stock_Cible FICHIERS]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{E8E0C7BD-551A-4284-BFEA-90C77D0DBC0B}"
+      DTS:ObjectName="PCA_Article_Stock_Cible FICHIERS">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"D:/DONNEES_EXTERNES/PCA/"+ (DT_WSTR, 10)@[User::VarSociete]+"/PCA_Article_Stock.xlsx"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="D:/DONNEES_EXTERNES/PCA/0/PCA_Article_Stock.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PCA_Article_Stock_Cible XLS]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{8341A167-52D0-4BD2-9079-4B822D017635}"
+      DTS:ObjectName="PCA_Article_Stock_Cible XLS">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"Provider=Microsoft.ACE.OLEDB.16.0;Data Source=D:/DONNEES_EXTERNES/PCA/"+ (DT_WSTR, 10)@[User::VarSociete] +"/PCA_Article_Stock.xlsx;Extended Properties=EXCEL 12.0"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=D:/DONNEES_EXTERNES/PCA/0/PCA_Article_Stock.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PCA_Article_Stock_Modèle FICHIERS]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{08AE2E15-6BB0-423E-9BC3-AAAAB9277F6F}"
+      DTS:ObjectName="PCA_Article_Stock_Modèle FICHIERS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="D:\DONNEES_EXTERNES\PCA\PCA_Article_Stock.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{53714C17-26EC-43DC-AE76-D6A2F22742FB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarDateDebut">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C3E635D3-59C6-4242-8D1A-3F78FAA5E4B4}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression=" getdate()"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarDateFin">
+      <DTS:VariableValue
+        DTS:DataType="7">3/22/2024 10:14:30 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0A7F66B3-D25E-4E42-B653-957B6C6313E8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarEtat">
+      <DTS:VariableValue
+        DTS:DataType="8">OK</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CAB79DE3-2E27-4E5E-B727-7B0A04030539}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR, 22)@[User::VarDateDebut] + &quot;_&quot; +@[System::PackageName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varLogID">
+      <DTS:VariableValue
+        DTS:DataType="8">_PCA-Article-Stock</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83CD8F14-120D-4073-9EFC-1A8C7BDDE341}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarObjSociete">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C72D493-69FA-49A9-A2FB-F25891B1006F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarSociete">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D378E1E5-8937-485E-9EFF-7AFF691D87D1}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT * FROM q_intg_pca_article_stock WITH(NOLOCK) WHERE [Code societe]=&quot;+ (DT_WSTR, 10)@[User::VarSociete]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarSqlSelect">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT * FROM q_intg_pca_article_stock WITH(NOLOCK) WHERE [Code societe]=0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0C365407-E8C7-4D07-A055-CC7C1FF09227}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarTypeErreur">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Conteneur de séquences"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Conteneur de séquences"
+      DTS:DTSID="{5D1F8897-E596-4CC8-B5A8-A8E3FDA68EC0}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:MaxErrorCount="0"
+      DTS:ObjectName="Conteneur de séquences">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Conteneur de séquences\Conteneur de boucles Foreach"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Conteneur de boucles Foreach"
+          DTS:DTSID="{8ABF31C8-7FE0-4893-BAFE-B46DEA193054}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Conteneur de boucles Foreach">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{5CBD088A-71FC-4FB1-AE3B-D8E7D89C387E}"
+            DTS:ObjectName="{5CBD088A-71FC-4FB1-AE3B-D8E7D89C387E}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::VarObjSociete" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Tâche de flux de données"
+              DTS:DTSID="{64E1A102-330B-4C98-92A4-C1C4B1CC81E9}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:MaxErrorCount="0"
+              DTS:ObjectName="Insertion"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel"
+                      componentClassID="Microsoft.ExcelDestination"
+                      contactInfo="Destination Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                      description="Destination Excel"
+                      name="Destination Excel"
+                      usesDispositions="true">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowset">Article_Stock</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Commande SQL à exécuter."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le mode utilisé pour accéder à la base de données."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadOptions"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[PCA_Article_Stock_Cible XLS]"
+                          connectionManagerRefId="Package.ConnectionManagers[PCA_Article_Stock_Cible XLS]"
+                          description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel]"
+                          errorOrTruncationOperation="Insérer"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="Entrée de destination Excel">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Code societe]"
+                              cachedDataType="i2"
+                              cachedName="Code societe"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Code societe]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code societe]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Code article]"
+                              cachedDataType="wstr"
+                              cachedLength="30"
+                              cachedName="Code article"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Code article]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code article]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Desc article]"
+                              cachedDataType="wstr"
+                              cachedLength="60"
+                              cachedName="Desc article"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Desc article]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Desc article]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Desc 2 article]"
+                              cachedDataType="wstr"
+                              cachedLength="30"
+                              cachedName="Desc 2 article"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Desc 2 article]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Desc 2 article]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Famille article]"
+                              cachedDataType="wstr"
+                              cachedLength="50"
+                              cachedName="Famille article"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Famille article]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Famille article]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Code fournisseur principal]"
+                              cachedDataType="wstr"
+                              cachedLength="20"
+                              cachedName="Code fournisseur principal"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Code fournisseur principal]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code fournisseur principal]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Nom fournisseur principal]"
+                              cachedDataType="wstr"
+                              cachedLength="36"
+                              cachedName="Nom fournisseur principal"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Nom fournisseur principal]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Nom fournisseur principal]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Depot]"
+                              cachedDataType="wstr"
+                              cachedLength="50"
+                              cachedName="Depot"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Depot]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Depot]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Emplacement]"
+                              cachedDataType="wstr"
+                              cachedLength="20"
+                              cachedName="Emplacement"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Emplacement]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Emplacement]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Lot]"
+                              cachedDataType="wstr"
+                              cachedLength="30"
+                              cachedName="Lot"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Lot]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Lot]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Num serie]"
+                              cachedDataType="wstr"
+                              cachedLength="30"
+                              cachedName="Num serie"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Num serie]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Num serie]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Quantite en stock]"
+                              cachedDataType="numeric"
+                              cachedName="Quantite en stock"
+                              cachedPrecision="15"
+                              cachedScale="6"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Quantite en stock]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Quantite en stock]" />
+                            <inputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].Columns[Unite]"
+                              cachedDataType="wstr"
+                              cachedLength="4"
+                              cachedName="Unite"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Unite]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Unite]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Code societe]"
+                              dataType="wstr"
+                              length="255"
+                              name="Code societe" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Code article]"
+                              dataType="wstr"
+                              length="255"
+                              name="Code article" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Desc article]"
+                              dataType="wstr"
+                              length="255"
+                              name="Desc article" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Desc 2 article]"
+                              dataType="wstr"
+                              length="255"
+                              name="Desc 2 article" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Famille article]"
+                              dataType="wstr"
+                              length="255"
+                              name="Famille article" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Code fournisseur principal]"
+                              dataType="wstr"
+                              length="255"
+                              name="Code fournisseur principal" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Nom fournisseur principal]"
+                              dataType="wstr"
+                              length="255"
+                              name="Nom fournisseur principal" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Depot]"
+                              dataType="wstr"
+                              length="255"
+                              name="Depot" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Emplacement]"
+                              dataType="wstr"
+                              length="255"
+                              name="Emplacement" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Lot]"
+                              dataType="wstr"
+                              length="255"
+                              name="Lot" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Num serie]"
+                              dataType="wstr"
+                              length="255"
+                              name="Num serie" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Quantite en stock]"
+                              dataType="wstr"
+                              length="255"
+                              name="Quantite en stock" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel].ExternalColumns[Unite]"
+                              dataType="wstr"
+                              length="255"
+                              name="Unite" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Outputs[Sortie d'erreur de destination Excel]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de destination Excel"
+                          synchronousInputId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Outputs[Sortie d'erreur de destination Excel].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Outputs[Sortie d'erreur de destination Excel].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Outputs[Sortie d'erreur de destination Excel].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Outputs[Sortie d'erreur de destination Excel].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+                      description="Source OLE DB"
+                      name="JEEVES"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Commande SQL à exécuter."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM q_intg_pca_article_stock WITH(NOLOCK) WHERE [Code societe]=1500</property>
+                        <property
+                          dataType="System.String"
+                          description="Variable contenant la commande SQL à exécuter."
+                          name="SqlCommandVariable">User::VarSqlSelect</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le mode utilisé pour accéder à la base de données."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.String"
+                          description="Mappages entre les paramètres de la commande SQL et les variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Connections[OleDbConnection]"
+                          connectionManagerID="{B4910743-E8E4-42C9-B9F2-BACA48893BD2}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh]"
+                          description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB]"
+                          name="Sortie de source OLE DB">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code societe]"
+                              dataType="i2"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Code societe]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code societe]"
+                              name="Code societe"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code article]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Code article]"
+                              length="30"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code article]"
+                              name="Code article"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Desc article]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Desc article]"
+                              length="60"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Desc article]"
+                              name="Desc article"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Desc 2 article]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Desc 2 article]"
+                              length="30"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Desc 2 article]"
+                              name="Desc 2 article"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Famille article]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Famille article]"
+                              length="50"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Famille article]"
+                              name="Famille article"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code fournisseur principal]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Code fournisseur principal]"
+                              length="20"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Code fournisseur principal]"
+                              name="Code fournisseur principal"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Nom fournisseur principal]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Nom fournisseur principal]"
+                              length="36"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Nom fournisseur principal]"
+                              name="Nom fournisseur principal"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Depot]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Depot]"
+                              length="50"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Depot]"
+                              name="Depot"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Emplacement]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Emplacement]"
+                              length="20"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Emplacement]"
+                              name="Emplacement"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Lot]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Lot]"
+                              length="30"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Lot]"
+                              name="Lot"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Num serie]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Num serie]"
+                              length="30"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Num serie]"
+                              name="Num serie"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Quantite en stock]"
+                              dataType="numeric"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Quantite en stock]"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Quantite en stock]"
+                              name="Quantite en stock"
+                              precision="15"
+                              scale="6"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Unite]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Unite]"
+                              length="4"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].Columns[Unite]"
+                              name="Unite"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Code societe]"
+                              dataType="i2"
+                              name="Code societe" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Code article]"
+                              dataType="wstr"
+                              length="30"
+                              name="Code article" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Desc article]"
+                              dataType="wstr"
+                              length="60"
+                              name="Desc article" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Desc 2 article]"
+                              dataType="wstr"
+                              length="30"
+                              name="Desc 2 article" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Famille article]"
+                              dataType="wstr"
+                              length="50"
+                              name="Famille article" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Code fournisseur principal]"
+                              dataType="wstr"
+                              length="20"
+                              name="Code fournisseur principal" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Nom fournisseur principal]"
+                              dataType="wstr"
+                              length="36"
+                              name="Nom fournisseur principal" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Depot]"
+                              dataType="wstr"
+                              length="50"
+                              name="Depot" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Emplacement]"
+                              dataType="wstr"
+                              length="20"
+                              name="Emplacement" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Lot]"
+                              dataType="wstr"
+                              length="30"
+                              name="Lot" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Num serie]"
+                              dataType="wstr"
+                              length="30"
+                              name="Num serie" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Quantite en stock]"
+                              dataType="numeric"
+                              name="Quantite en stock"
+                              precision="15"
+                              scale="6" />
+                            <externalMetadataColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB].ExternalColumns[Unite]"
+                              dataType="wstr"
+                              length="4"
+                              name="Unite" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB]"
+                          isErrorOut="true"
+                          name="Sortie d'erreur de source OLE DB">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Code societe]"
+                              dataType="i2"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Code societe]"
+                              name="Code societe" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Code article]"
+                              dataType="wstr"
+                              length="30"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Code article]"
+                              name="Code article" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Desc article]"
+                              dataType="wstr"
+                              length="60"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Desc article]"
+                              name="Desc article" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Desc 2 article]"
+                              dataType="wstr"
+                              length="30"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Desc 2 article]"
+                              name="Desc 2 article" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Famille article]"
+                              dataType="wstr"
+                              length="50"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Famille article]"
+                              name="Famille article" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Code fournisseur principal]"
+                              dataType="wstr"
+                              length="20"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Code fournisseur principal]"
+                              name="Code fournisseur principal" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom fournisseur principal]"
+                              dataType="wstr"
+                              length="36"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Nom fournisseur principal]"
+                              name="Nom fournisseur principal" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Depot]"
+                              dataType="wstr"
+                              length="50"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Depot]"
+                              name="Depot" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Emplacement]"
+                              dataType="wstr"
+                              length="20"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Emplacement]"
+                              name="Emplacement" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Lot]"
+                              dataType="wstr"
+                              length="30"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Lot]"
+                              name="Lot" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Num serie]"
+                              dataType="wstr"
+                              length="30"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Num serie]"
+                              name="Num serie" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Quantite en stock]"
+                              dataType="numeric"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Quantite en stock]"
+                              name="Quantite en stock"
+                              precision="15"
+                              scale="6" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Unite]"
+                              dataType="wstr"
+                              length="4"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[Unite]"
+                              name="Unite" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion.Paths[Sortie de source OLE DB]"
+                      endId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel.Inputs[Entrée de destination Excel]"
+                      name="Sortie de source OLE DB"
+                      startId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Outputs[Sortie de source OLE DB]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Tâche de système de fichiers"
+              DTS:CreationName="Microsoft.FileSystemTask"
+              DTS:Description="Tâche de système de fichiers"
+              DTS:DTSID="{4AFADFF8-B513-4CCC-8250-2D4F92268E69}"
+              DTS:ExecutableType="Microsoft.FileSystemTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tâche de système de fichiers"
+              DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <FileSystemData
+                  TaskOverwriteDestFile="True"
+                  TaskSourcePath="{08AE2E15-6BB0-423E-9BC3-AAAAB9277F6F}"
+                  TaskDestinationPath="{E8E0C7BD-551A-4284-BFEA-90C77D0DBC0B}" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Conteneur de séquences\Conteneur de boucles Foreach.PrecedenceConstraints[Contrainte]"
+              DTS:CreationName=""
+              DTS:DTSID="{98AEB8B7-F731-46CD-A0BC-96C990C99E2B}"
+              DTS:From="Package\Conteneur de séquences\Conteneur de boucles Foreach\Tâche de système de fichiers"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Contrainte"
+              DTS:To="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion" />
+          </DTS:PrecedenceConstraints>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{EF36DC06-7502-4AE5-9EF5-51B744F0B586}"
+              DTS:ObjectName="{EF36DC06-7502-4AE5-9EF5-51B744F0B586}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::VarObjSociete" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\End Log"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{4C491E98-08D4-4665-8719-F97705E4AF8C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="End Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\End Log.EventHandlers[OnPostExecute]"
+          DTS:CreationName="OnPostExecute"
+          DTS:DTSID="{A84C9A44-BE14-4E84-8794-A448CEC372A0}"
+          DTS:EventID="0"
+          DTS:EventName="OnPostExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="Propriété de propagation de l'événement"
+              DTS:DTSID="{99A183B0-4E94-4F25-9B56-B8E6D84C713A}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\End Log.EventHandlers[OnPostExecute]\Tâche d'exécution de requêtes SQL"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Tâche d'exécution de requêtes SQL"
+              DTS:DTSID="{EC8D01FE-3E44-4509-91B6-81E754677269}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Tâche d'exécution de requêtes SQL"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{8C1D4242-FA72-4A05-9982-A94BA15DCAD3}"
+                  SQLTask:SqlStatementSource=" INSERT INTO dbo.PCA_LOGS  VALUES (?,?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::varLogID"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="User::VarDateDebut"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="7"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="User::VarDateFin"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="7"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="4"
+                    SQLTask:DtsVariableName="User::VarEtat"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8C1D4242-FA72-4A05-9982-A94BA15DCAD3}"
+          SQLTask:SqlStatementSource="SELECT 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Société"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{773A998F-57AE-4D71-B0F1-BD9112653904}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Société"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B4910743-E8E4-42C9-B9F2-BACA48893BD2}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="select foretagkod as foretagkod from sy1 with(nolock) where foretagkod in ('1500','1100')"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::VarObjSociete" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Log"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{A504C3F4-B571-4DBD-8025-9F2A07C2270B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8C1D4242-FA72-4A05-9982-A94BA15DCAD3}"
+          SQLTask:SqlStatementSource="SELECT GETDATE() AS [Date_Debut];"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Date_Debut"
+            SQLTask:DtsVariableName="User::VarDateDebut" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{DF4F381C-BD15-4D12-A283-D9FF7E8C70EC}"
+      DTS:From="Package\Start Log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\Société" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{390A764B-66B8-4F3F-AEBE-55F5E7838EEE}"
+      DTS:From="Package\Conteneur de séquences"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 1"
+      DTS:To="Package\End Log" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E43F70FC-5A83-4132-9E8F-EAFA384846B7}"
+      DTS:From="Package\Société"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 2"
+      DTS:To="Package\Conteneur de séquences" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{9697FB1F-7AAE-4A63-91CD-2996D88F2CED}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="Propriété de propagation de l'événement"
+          DTS:DTSID="{523BC047-A212-46A0-889E-ADA06392BC26}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Set Type Erreur"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Tâche d'expression"
+          DTS:DTSID="{9EB40555-FF6C-424B-9A63-9B55717F3003}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Set Type Erreur"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::VarTypeErreur] = &quot;Technique&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Table Erreur"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tâche d'exécution de requêtes SQL"
+          DTS:DTSID="{203F2478-35E3-47F7-93DD-90924269D7B6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Table Erreur"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{8C1D4242-FA72-4A05-9982-A94BA15DCAD3}"
+              SQLTask:SqlStatementSource="INSERT INTO dbo.PCA_ERREURS VALUES (?,?,?,?,?,&quot;SOCIETE&quot;); " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::VarDateFin"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::VarTypeErreur"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Tâche d'expression 1"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Tâche d'expression"
+          DTS:DTSID="{33C0F7DF-E3E0-4C49-995B-B7A0935E866A}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tâche d'expression 1"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::VarEtat] = &quot;Erreur&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Contrainte]"
+          DTS:CreationName=""
+          DTS:DTSID="{862BECCA-D9FF-4790-8145-2E8E1E2BE836}"
+          DTS:From="Package.EventHandlers[OnError]\Set Type Erreur"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Contrainte"
+          DTS:To="Package.EventHandlers[OnError]\Tâche d'expression 1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Contrainte 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{51C12FE1-658B-4F52-BD46-289ECA8FC85D}"
+          DTS:From="Package.EventHandlers[OnError]\Tâche d'expression 1"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Contrainte 1"
+          DTS:To="Package.EventHandlers[OnError]\Table Erreur" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion"
+          TopLeft="320,11.5" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Tâche de système de fichiers"
+          TopLeft="9,5.5" />
+        <EdgeLayout
+          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach.PrecedenceConstraints[Contrainte]"
+          TopLeft="231,29.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="89,0"
+              Start="0,0"
+              End="81.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="81.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="446,109"
+          Size="446,152"
+          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach"
+          TopLeft="42,61" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="567,268"
+          Size="567,311"
+          Id="Package\Conteneur de séquences"
+          TopLeft="438.333333333333,54.222222222222" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\End Log"
+          TopLeft="1107.73015873016,180.444444444444" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Société"
+          TopLeft="234.888888888889,168" />
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Start Log"
+          TopLeft="17.4444444444444,154.333333333333" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="141.444444444444,175.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.4444444444445,13.6666666666667"
+              Start="0,0"
+              End="85.9444444444445,13.6666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="42.7222222222222,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42.7222222222222,0"
+                    Point2="46.7222222222222,0"
+                    Point3="46.7222222222222,4" />
+                  <mssgle:LineSegment
+                    End="46.7222222222222,9.66666666666666" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.7222222222222,9.66666666666666"
+                    Point2="46.7222222222222,13.6666666666667"
+                    Point3="50.7222222222222,13.6666666666667" />
+                  <mssgle:LineSegment
+                    End="85.9444444444445,13.6666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="1005.33333333333,209.722222222222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.396825396825,-8.277777777778"
+              Start="0,0"
+              End="94.8968253968252,-8.277777777778">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.1984126984126,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="47.1984126984126,0"
+                    Point2="51.1984126984126,0"
+                    Point3="51.1984126984126,-4" />
+                  <mssgle:LineSegment
+                    End="51.1984126984126,-4.277777777778" />
+                  <mssgle:CubicBezierSegment
+                    Point1="51.1984126984126,-4.277777777778"
+                    Point2="51.1984126984126,-8.277777777778"
+                    Point3="55.1984126984126,-8.277777777778" />
+                  <mssgle:LineSegment
+                    End="94.8968253968252,-8.277777777778" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 2]"
+          TopLeft="350.888888888889,189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.444444444444,20.722222222222"
+              Start="0,0"
+              End="79.944444444444,20.722222222222">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="39.722222222222,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.722222222222,0"
+                    Point2="43.722222222222,0"
+                    Point3="43.722222222222,4" />
+                  <mssgle:LineSegment
+                    End="43.722222222222,16.722222222222" />
+                  <mssgle:CubicBezierSegment
+                    Point1="43.722222222222,16.722222222222"
+                    Point2="43.722222222222,20.722222222222"
+                    Point3="47.722222222222,20.722222222222" />
+                  <mssgle:LineSegment
+                    End="79.944444444444,20.722222222222" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="156,42"
+          Id="Package.EventHandlers[OnError]\Set Type Erreur"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package.EventHandlers[OnError]\Table Erreur"
+          TopLeft="607,69" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package.EventHandlers[OnError]\Tâche d'expression 1"
+          TopLeft="327,66" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Contrainte]"
+          TopLeft="216,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111,0"
+              Start="0,0"
+              End="103.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="103.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Contrainte 1]"
+          TopLeft="510,88.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97,0"
+              Start="0,0"
+              End="89.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="89.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES"
+          TopLeft="123,117" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel"
+          TopLeft="403,113" />
+        <EdgeLayout
+          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion.Paths[Sortie de source OLE DB]"
+          TopLeft="244,136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159,0"
+              Start="0,0"
+              End="151.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="151.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\End Log.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="254,42"
+          Id="Package\End Log.EventHandlers[OnPostExecute]\Tâche d'exécution de requêtes SQL"
+          TopLeft="338,80" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

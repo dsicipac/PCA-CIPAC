@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh"
+  DTS:DTSID="{B4910743-E8E4-42C9-B9F2-BACA48893BD2}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=JVS6-SVP-MSSQL;User ID=r_siddwh;Initial Catalog=JEEVES_PROD;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAs3WtyxxHKEmB1g9ceF3KCwAAAAACAAAAAAADZgAAwAAAABAAAADHxV5kBT+XchyFEHVcro40AAAAAASAAACgAAAAEAAAABbPn/L7HAwR6fBkZjESNPOAAAAAVaRMgWAjPN/m3/T1OVvu7dLhMumwj580CmzJh6bfoEb5Yjx5vUDMWKd6tBMDV2zwteVNK7z9moewpPa/eoBaqCyMIfneCrna3B1EPZ7YFJGtuyBpwehzqQA+sjYNP5MNCtKMeOxOV1LQsu+NCyz2mDYruDc8P2Hip+jrBEDjhPMUAAAAYVWBfGQ7BTPzdATcKcf2y3y1R38=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

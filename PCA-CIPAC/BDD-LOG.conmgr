@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SVP-SQL-DWH.LOG_CIPAC.rw_log"
+  DTS:DTSID="{8C1D4242-FA72-4A05-9982-A94BA15DCAD3}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=SVP-SQL-DWH;User ID=rw_log;Initial Catalog=LOG_CIPAC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAs3WtyxxHKEmB1g9ceF3KCwAAAAACAAAAAAADZgAAwAAAABAAAACsYp/ekw9Ivn0n/oc2QY40AAAAAASAAACgAAAAEAAAAHAhimKfW56ViIVZXzBJzxCAAAAAL1vN05JYODsScdz2S0/tR19ZIvpGKe+14N+2239h856sU9Ai1CnQpQXxmkeQwsaeE/GtaErOCBQ1v9QrC61JsdfEXqbJfy0ZDPRbBcp14fTeGaubJpBqfMrmNLQ3dhmJvIBvhjsqKV3iddH7ijU6YK6t4Ag3JYfmvO5tylAPQB4UAAAATffqdnDfJccvLjzQT0/KddKGeY0=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
