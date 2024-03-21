@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="0"
   DTS:ObjectName="PCA-Article-Stock"
   DTS:PackageType="5"
-  DTS:VersionBuild="113"
-  DTS:VersionGUID="{212B3CD2-19FC-405F-A83B-C7DB368A6E2A}">
+  DTS:VersionBuild="116"
+  DTS:VersionGUID="{BAAF0319-0FDC-437C-9427-C50794C443BA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,10 +23,10 @@
       DTS:DTSID="{E8E0C7BD-551A-4284-BFEA-90C77D0DBC0B}"
       DTS:ObjectName="PCA_Article_Stock_Cible FICHIERS">
       <DTS:PropertyExpression
-        DTS:Name="ConnectionString">"D:/DONNEES_EXTERNES/PCA/"+ (DT_WSTR, 10)@[User::VarSociete]+"/PCA_Article_Stock.xlsx"</DTS:PropertyExpression>
+        DTS:Name="ConnectionString">"D:\\DONNEES_EXTERNES\\PCA\\" + (DT_WSTR, 10)@[User::VarSociete] + "\\PCA_Article_Stock.xlsx"</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="D:/DONNEES_EXTERNES/PCA/0/PCA_Article_Stock.xlsx" />
+          DTS:ConnectionString="D:\DONNEES_EXTERNES\PCA\0\PCA_Article_Stock.xlsx" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -74,7 +74,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="VarDateFin">
       <DTS:VariableValue
-        DTS:DataType="7">3/22/2024 10:16:45 AM</DTS:VariableValue>
+        DTS:DataType="7">3/22/2024 10:28:19 AM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1380,13 +1380,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="121,42"
-          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES"
-          TopLeft="123,117" />
-        <NodeLayout
           Size="164,42"
           Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel"
           TopLeft="403,113" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES"
+          TopLeft="123,117" />
         <EdgeLayout
           Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion.Paths[Sortie de source OLE DB]"
           TopLeft="244,136">
