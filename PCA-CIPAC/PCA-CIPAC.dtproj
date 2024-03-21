@@ -26,11 +26,10 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">SVD-NDWH</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA627mRlIG/06Euuo7yO5rEAAAAAACAAAAAAADZgAAwAAAABAAAAAHM5ABqRZg19cXy2WlIxmhAAAAAASAAACgAAAAEAAAAB4Q5eQ1gEOXqUPXMJTekvWIAAAAC9p5YD4JntNNeIDKILrSU7RU0dUxgjUNqQRu9D77fsv21R3s97Kpds6/agQsCBie8xefOAr0W+ifrwyF19rCu3GghNdEYP5wFB6yEG6dO/2aRF96gmfmPDr+j8oIPKlA9HkNanXUW5hSqa2F2mVu+81+PuWvFAl+bCiSE1G+C/EC677czjXrehQAAAAW0AqvT+pj8Q+caD6yMLbqX4hNTg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA627mRlIG/06Euuo7yO5rEAAAAAACAAAAAAADZgAAwAAAABAAAABVE5YTQeLrAXDkwjSeLo0bAAAAAASAAACgAAAAEAAAAOgEmGaCtZ1LpOxaPl9FF6iIAAAA8ATjlv9rxVj7PZDNOPw4KPNXaWmEASZ5d6DgGs19ASO3kW+Gi9WgGTGf234YDeJV5Dp6e+umbhDvZlIPNbEPHb809RjIRwb2stlWO2U8VzcpQ5q8wMJXDXVtWS1y25aRh1m7Jd+8YE7XvhylXVPLoRSZlaevhZqVTbulpRo7dGZUB1gjKPUfaRQAAAADlA+tNWrGViEwVkyIP/FJlMvpFg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="PCA-Article-Stock.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
@@ -339,33 +338,16 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Package.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{79A42E99-4D20-4C6D-8E9E-0C0DF51038E5}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F5D3DCB9-B0B1-4DCF-8271-3813C1F098CA}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="PCA-Article-Stock.dtsx">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">{48097C9F-A44C-4D53-A65B-C83AC7A65B6B}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">PCA-Article-Stock</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">116</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">122</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{BAAF0319-0FDC-437C-9427-C50794C443BA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{81AE525C-3644-48F3-AFF6-421AC07DA2CE}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
