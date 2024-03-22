@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="0"
   DTS:ObjectName="PCA-Article-Stock"
   DTS:PackageType="5"
-  DTS:VersionBuild="122"
-  DTS:VersionGUID="{81AE525C-3644-48F3-AFF6-421AC07DA2CE}">
+  DTS:VersionBuild="125"
+  DTS:VersionGUID="{47E15C5B-96F5-4D5B-BB3E-E2C613F235C8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,7 @@
       DTS:DTSID="{E8E0C7BD-551A-4284-BFEA-90C77D0DBC0B}"
       DTS:ObjectName="PCA_Article_Stock_Cible FICHIERS">
       <DTS:PropertyExpression
-        DTS:Name="ConnectionString">"D:\\DONNEES_EXTERNES\\PCA\\" + (DT_WSTR, 10)@[User::VarSociete] + "\\PCA_Article_Stock.xlsx"</DTS:PropertyExpression>
+        DTS:Name="ConnectionString">@[User::VarCibleFichiers]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="D:\DONNEES_EXTERNES\PCA\0\PCA_Article_Stock.xlsx" />
@@ -35,7 +35,7 @@
       DTS:DTSID="{8341A167-52D0-4BD2-9079-4B822D017635}"
       DTS:ObjectName="PCA_Article_Stock_Cible XLS">
       <DTS:PropertyExpression
-        DTS:Name="ConnectionString">"Provider=Microsoft.ACE.OLEDB.16.0;Data Source=D:/DONNEES_EXTERNES/PCA/"+ (DT_WSTR, 10)@[User::VarSociete] +"/PCA_Article_Stock.xlsx;Extended Properties=EXCEL 12.0"</DTS:PropertyExpression>
+        DTS:Name="ConnectionString">@[User::VarCibleXLS]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="0"
@@ -48,6 +48,8 @@
       DTS:CreationName="FILE"
       DTS:DTSID="{08AE2E15-6BB0-423E-9BC3-AAAAB9277F6F}"
       DTS:ObjectName="PCA_Article_Stock_Modèle FICHIERS">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::VarModeleFichiers]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="D:\DONNEES_EXTERNES\PCA\PCA_Article_Stock.xlsx" />
@@ -55,6 +57,28 @@
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{63676954-A2A0-4550-B9E6-89BE7D73C1BE}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;D:\\DONNEES_EXTERNES\\PCA\\&quot; + (DT_WSTR, 10)@[User::VarSociete] + &quot;\\PCA_Article_Stock.xlsx&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarCibleFichiers">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\DONNEES_EXTERNES\PCA\0\PCA_Article_Stock.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{552FE773-2A63-432E-8AF5-8E5963179380}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Provider=Microsoft.ACE.OLEDB.16.0;Data Source=D:/DONNEES_EXTERNES/PCA/&quot;+ (DT_WSTR, 10)@[User::VarSociete] +&quot;/PCA_Article_Stock.xlsx;Extended Properties=EXCEL 12.0&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarCibleXLS">
+      <DTS:VariableValue
+        DTS:DataType="8">Provider=Microsoft.ACE.OLEDB.16.0;Data Source=D:/DONNEES_EXTERNES/PCA/0/PCA_Article_Stock.xlsx;Extended Properties=EXCEL 12.0</DTS:VariableValue>
+    </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{53714C17-26EC-43DC-AE76-D6A2F22742FB}"
@@ -74,7 +98,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="VarDateFin">
       <DTS:VariableValue
-        DTS:DataType="7">3/22/2024 10:47:47 AM</DTS:VariableValue>
+        DTS:DataType="7">3/22/2024 11:12:16 AM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -95,6 +119,15 @@
       DTS:ObjectName="varLogID">
       <DTS:VariableValue
         DTS:DataType="8">_PCA-Article-Stock</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3230F616-1A54-4590-85DC-371A754E9EFD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarModeleFichiers">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\DONNEES_EXTERNES\PCA\PCA_Article_Stock.xlsx</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -494,7 +527,7 @@
                         <connection
                           refId="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\JEEVES.Connections[OleDbConnection]"
                           connectionManagerID="{B4910743-E8E4-42C9-B9F2-BACA48893BD2}:external"
-                          connectionManagerRefId="Project.ConnectionManagers[JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh]"
+                          connectionManagerRefId="Project.ConnectionManagers[BDD-JEEVES]"
                           description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
                           name="OleDbConnection" />
                       </connections>
@@ -957,7 +990,7 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{B4910743-E8E4-42C9-B9F2-BACA48893BD2}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="select foretagkod as foretagkod from sy1 with(nolock) where foretagkod in ('1500','1100')"
+          SQLTask:SqlStatementSource="select foretagkod as foretagkod from sy1 with(nolock) where foretagkod &lt;&gt; '9999'"
           SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="0"
@@ -1196,7 +1229,7 @@
         <NodeLayout
           Size="116,42"
           Id="Package\Société"
-          TopLeft="223.888888888889,217" />
+          TopLeft="218.888888888889,165" />
         <NodeLayout
           Size="124,42"
           Id="Package\Start Log"
@@ -1207,26 +1240,26 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="82.4444444444446,62.666666666667"
+              EndConnector="77.4444444444446,10.666666666667"
               Start="0,0"
-              End="74.9444444444446,62.666666666667">
+              End="69.9444444444446,10.666666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="37.2222222222223,0" />
+                    End="34.7222222222223,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="37.2222222222223,0"
-                    Point2="41.2222222222223,0"
-                    Point3="41.2222222222223,4" />
+                    Point1="34.7222222222223,0"
+                    Point2="38.7222222222223,0"
+                    Point3="38.7222222222223,4" />
                   <mssgle:LineSegment
-                    End="41.2222222222223,58.666666666667" />
+                    End="38.7222222222223,6.666666666667" />
                   <mssgle:CubicBezierSegment
-                    Point1="41.2222222222223,58.666666666667"
-                    Point2="41.2222222222223,62.666666666667"
-                    Point3="45.2222222222223,62.666666666667" />
+                    Point1="38.7222222222223,6.666666666667"
+                    Point2="38.7222222222223,10.666666666667"
+                    Point3="42.7222222222223,10.666666666667" />
                   <mssgle:LineSegment
-                    End="74.9444444444446,62.666666666667" />
+                    End="69.9444444444446,10.666666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1271,30 +1304,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Contrainte 2]"
-          TopLeft="339.888888888889,238">
+          TopLeft="334.888888888889,186">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="98.444444444444,-28.277777777778"
+              EndConnector="103.444444444444,23.722222222222"
               Start="0,0"
-              End="90.944444444444,-28.277777777778">
+              End="95.944444444444,23.722222222222">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="45.222222222222,0" />
+                    End="47.722222222222,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="45.222222222222,0"
-                    Point2="49.222222222222,0"
-                    Point3="49.222222222222,-4" />
+                    Point1="47.722222222222,0"
+                    Point2="51.722222222222,0"
+                    Point3="51.722222222222,4" />
                   <mssgle:LineSegment
-                    End="49.222222222222,-24.277777777778" />
+                    End="51.722222222222,19.722222222222" />
                   <mssgle:CubicBezierSegment
-                    Point1="49.222222222222,-24.277777777778"
-                    Point2="49.222222222222,-28.277777777778"
-                    Point3="53.222222222222,-28.277777777778" />
+                    Point1="51.722222222222,19.722222222222"
+                    Point2="51.722222222222,23.722222222222"
+                    Point3="55.722222222222,23.722222222222" />
                   <mssgle:LineSegment
-                    End="90.944444444444,-28.277777777778" />
+                    End="95.944444444444,23.722222222222" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1378,7 +1411,7 @@
     design-time-name="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="164,42"
           Id="Package\Conteneur de séquences\Conteneur de boucles Foreach\Insertion\Destination Excel"
@@ -1406,7 +1439,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

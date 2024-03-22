@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">SVD-NDWH</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA627mRlIG/06Euuo7yO5rEAAAAAACAAAAAAADZgAAwAAAABAAAACQ0kqz0ajLFUR4KE/WIJrMAAAAAASAAACgAAAAEAAAADKnvKLtBouJ0AmMv0jteTiIAAAAiCVpnGa8u4i05KhzWf21fCeuPv/bh6ZdfyFfxJZliHpEgFIFF/SLN9NMFsrzm7Yf6TlY855iIcB7vTT3nrp/49DhdHE7U2twQ7+RWb13kZc2D4TdDvzPmDnRvcrVDoW0GP+ZZYMQBzMvct07Xw8VzTNhy9af7BiiYYHcrk1L7C7x5jyl4ormyBQAAACHc6W56rO4r8mebgrY4YYB3Bfn9w==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA627mRlIG/06Euuo7yO5rEAAAAAACAAAAAAADZgAAwAAAABAAAAAWtdbmYm+W4Jc9ylipbos9AAAAAASAAACgAAAAEAAAAP/zTkXyf/1gNeamoScPnYSIAAAAtdG6ySZI7+5/vYFExZOabRCpG6kdMIYdsUE7J1pWMrPb4zIx9P3bKI+DB2ZnrFdVRp4wk/zl2vL10p2/lOz1frZqxJ14dZ/q/zIkPAdgt+BAOeoYKo00et1FUCiC/h8jVYxosWFuLYKX8xurhcjSiZayzZapwXRidF2M806uw878sa2qXEvpnBQAAADf0J9hmalYSmmWj2EEyJBTDc5rHw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -110,7 +110,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">JEEVES_DEV</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">JEEVES_PROD</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -140,7 +140,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">JVS6-SVD-SQL</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">JVS6-SVP-MSSQL</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -260,7 +260,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">SVD-SQL-DWH</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">SVP-SQL-DWH</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -287,10 +287,10 @@
                 <SSIS:Property SSIS:Name="Name">PCA-Article-Stock</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">122</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">125</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{81AE525C-3644-48F3-AFF6-421AC07DA2CE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{47E15C5B-96F5-4D5B-BB3E-E2C613F235C8}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -442,21 +442,6 @@
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="CM.PCA_Article_Stock_Modèle FICHIERS.ConnectionString">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">D:\DONNEES_EXTERNES\PCA\PCA_Article_Stock.xlsx</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
