@@ -26,19 +26,20 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">SVD-NDWH</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA627mRlIG/06Euuo7yO5rEAAAAAACAAAAAAADZgAAwAAAABAAAABVE5YTQeLrAXDkwjSeLo0bAAAAAASAAACgAAAAEAAAAOgEmGaCtZ1LpOxaPl9FF6iIAAAA8ATjlv9rxVj7PZDNOPw4KPNXaWmEASZ5d6DgGs19ASO3kW+Gi9WgGTGf234YDeJV5Dp6e+umbhDvZlIPNbEPHb809RjIRwb2stlWO2U8VzcpQ5q8wMJXDXVtWS1y25aRh1m7Jd+8YE7XvhylXVPLoRSZlaevhZqVTbulpRo7dGZUB1gjKPUfaRQAAAADlA+tNWrGViEwVkyIP/FJlMvpFg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA627mRlIG/06Euuo7yO5rEAAAAAACAAAAAAADZgAAwAAAABAAAACQ0kqz0ajLFUR4KE/WIJrMAAAAAASAAACgAAAAEAAAADKnvKLtBouJ0AmMv0jteTiIAAAAiCVpnGa8u4i05KhzWf21fCeuPv/bh6ZdfyFfxJZliHpEgFIFF/SLN9NMFsrzm7Yf6TlY855iIcB7vTT3nrp/49DhdHE7U2twQ7+RWb13kZc2D4TdDvzPmDnRvcrVDoW0GP+ZZYMQBzMvct07Xw8VzTNhy9af7BiiYYHcrk1L7C7x5jyl4ormyBQAAACHc6W56rO4r8mebgrY4YYB3Bfn9w==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="PCA-Article-Stock.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="PIL-PCA-GLOBAL.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="BDD-JEEVES.conmgr" />
-          <SSIS:ConnectionManager SSIS:Name="BDD-LOG.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="BDD-LOGS.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.ConnectByProxy">
+            <SSIS:Parameter SSIS:Name="CM.BDD-JEEVES.ConnectByProxy">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -53,22 +54,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.ConnectionString">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=JVS6-SVP-MSSQL;User ID=r_siddwh;Initial Catalog=JEEVES_PROD;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.ConnectRetryCount">
+            <SSIS:Parameter SSIS:Name="CM.BDD-JEEVES.ConnectRetryCount">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -83,7 +69,7 @@
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.ConnectRetryInterval">
+            <SSIS:Parameter SSIS:Name="CM.BDD-JEEVES.ConnectRetryInterval">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -98,7 +84,7 @@
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.ConnectUsingManagedIdentity">
+            <SSIS:Parameter SSIS:Name="CM.BDD-JEEVES.ConnectUsingManagedIdentity">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -113,7 +99,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.BDD-JEEVES.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -124,25 +110,11 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">JEEVES_PROD</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">JEEVES_DEV</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.Password">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.BDD-JEEVES.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -157,7 +129,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.BDD-JEEVES.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -168,11 +140,11 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">JVS6-SVP-MSSQL</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">JVS6-SVD-SQL</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh.UserName">
+            <SSIS:Parameter SSIS:Name="CM.BDD-JEEVES.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -187,7 +159,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.ConnectByProxy">
+            <SSIS:Parameter SSIS:Name="CM.BDD-LOGS.ConnectByProxy">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -202,22 +174,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.ConnectionString">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=SVP-SQL-DWH;User ID=rw_log;Initial Catalog=LOG_CIPAC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.ConnectRetryCount">
+            <SSIS:Parameter SSIS:Name="CM.BDD-LOGS.ConnectRetryCount">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -232,7 +189,7 @@
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.ConnectRetryInterval">
+            <SSIS:Parameter SSIS:Name="CM.BDD-LOGS.ConnectRetryInterval">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -247,7 +204,7 @@
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.ConnectUsingManagedIdentity">
+            <SSIS:Parameter SSIS:Name="CM.BDD-LOGS.ConnectUsingManagedIdentity">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -262,7 +219,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.BDD-LOGS.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -277,21 +234,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.Password">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.BDD-LOGS.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -306,7 +249,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.BDD-LOGS.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -317,11 +260,11 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">SVP-SQL-DWH</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">SVD-SQL-DWH</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SVP-SQL-DWH.LOG_CIPAC.rw_log.UserName">
+            <SSIS:Parameter SSIS:Name="CM.BDD-LOGS.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -518,6 +461,23 @@
                 </SSIS:Parameter>
               </SSIS:Parameters>
             </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="PIL-PCA-GLOBAL.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C3A75756-0932-4A9F-8BA3-96828E7DB3CE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{24467C34-A8E9-4FC5-816A-749C8DFD673B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
       </SSIS:Project>
@@ -527,7 +487,7 @@
   <Miscellaneous />
   <Configurations>
     <Configuration>
-      <Name>Development</Name>
+      <Name>Dev</Name>
       <Options>
         <OutputPath>bin</OutputPath>
         <ConnectionMappings />
@@ -545,7 +505,51 @@
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>
             <Name>LastModifiedTime</Name>
-            <Value xsi:type="xsd:dateTime">2024-03-11T05:03:29.5791418Z</Value>
+            <Value xsi:type="xsd:dateTime">2024-03-21T23:58:31.3520638Z</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>{f3d5a3ea-768e-4ebc-a495-356d15e3e537}</Id>
+            <Name>Project::BDD_LOG</Name>
+            <Value xsi:type="xsd:string">Data Source=SVD-SQL-DWH;User ID=rw_log;Initial Catalog=LOG_CIPAC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>{1ff626e6-a7e2-4cfd-9660-54fa5bc64eed}</Id>
+            <Name>Project::BDDJEEVES_ConnectionString</Name>
+            <Value xsi:type="xsd:string">Data Source=JVS6-SVD-SQL;User ID=r_siddwh;Initial Catalog=JEEVES_DEV;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</Value>
+          </ConfigurationSetting>
+        </ParameterConfigurationValues>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>Prod</Name>
+      <Options>
+        <OutputPath>bin</OutputPath>
+        <ConnectionMappings />
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings />
+        <DatabaseStorageLocations />
+        <TargetServerVersion>SQLServer2019</TargetServerVersion>
+        <AzureMode>false</AzureMode>
+        <LinkedAzureTenantId />
+        <LinkedAzureAccountId />
+        <LinkedAzureSSISIR />
+        <LinkedAzureStorage />
+        <RemoteExecutionFolder />
+        <ParameterConfigurationValues>
+          <ConfigurationSetting>
+            <Id>LastModifiedTime</Id>
+            <Name>LastModifiedTime</Name>
+            <Value xsi:type="xsd:dateTime">2024-03-21T23:58:31.3530647Z</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>{f3d5a3ea-768e-4ebc-a495-356d15e3e537}</Id>
+            <Name>Project::BDD_LOG</Name>
+            <Value xsi:type="xsd:string">Data Source=SVP-SQL-DWH;User ID=rw_log;Initial Catalog=LOG_CIPAC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>{1ff626e6-a7e2-4cfd-9660-54fa5bc64eed}</Id>
+            <Name>Project::BDDJEEVES_ConnectionString</Name>
+            <Value xsi:type="xsd:string">Data Source=JVS6-SVP-MSSQL;User ID=r_siddwh;Initial Catalog=JEEVES_PROD;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</Value>
           </ConfigurationSetting>
         </ParameterConfigurationValues>
       </Options>

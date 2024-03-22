@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="BDD-LOGS"
+  DTS:DTSID="{8C1D4242-FA72-4A05-9982-A94BA15DCAD3}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::BDD_LOG]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::BDDLOGS_Password]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=SVP-SQL-DWH;User ID=rw_log;Initial Catalog=LOG_CIPAC;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

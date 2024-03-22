@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
-  DTS:ObjectName="JVS6-SVP-MSSQL.JEEVES_PROD.r_siddwh"
+  DTS:ObjectName="BDD-JEEVES"
   DTS:DTSID="{B4910743-E8E4-42C9-B9F2-BACA48893BD2}"
   DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::BDDJEEVES_ConnectionString]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="Password">@[$Project::BDDJEEVES_Password]</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
@@ -10,7 +14,7 @@
       DTS:ConnectionString="Data Source=JVS6-SVP-MSSQL;User ID=r_siddwh;Initial Catalog=JEEVES_PROD;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA627mRlIG/06Euuo7yO5rEAAAAAACAAAAAAADZgAAwAAAABAAAACxzmakhJQKIXLUOGge16zEAAAAAASAAACgAAAAEAAAAAHPDWbQi1yLcx2txy5PR++AAAAAqe0xCS5VJsqXIBuVR5pgpb7mT5dP4W90v8ZsAHFx+vMNRfdGawQevWMhFRMJj90Xa4jqF1FWNHnjmVT/eU7K5K8Eh/FLLfig17QmjbjxeCLRRW7ldYoJOdwLkPnvI5jXAT2sKmG8m20Njyxq0+WtU07mnkP3Y5oxyzfeoH0JxEkUAAAAbcU11PGQmhfoB4ynqdZn6Q7BSC0=</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA627mRlIG/06Euuo7yO5rEAAAAAACAAAAAAADZgAAwAAAABAAAABprKo+U2xyWehn+G0nftAaAAAAAASAAACgAAAAEAAAAHxIDq2HHmh+T8kpHJf9QaVwAAAAuxuvcZnzIO9qZ64NlW6j6qRwmJoR1kBdyWlUe/2RWFozxkLsRPVBJi7staPlrIbW8Vkgxx8l5sRvq2aNs5j3ham8+6z6qs4WQDl4lxi6n1CerObEtw0y12x/Z/WLjN56NhtKkoctHkjdjTx342HpQhQAAACXhYNUO8pp+LOa9OHyY274viaPNA==</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

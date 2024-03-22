@@ -7,11 +7,12 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "PCA-CIPAC", "PCA-CIPAC\PCA-
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Development|Default = Development|Default
+		Dev|Default = Dev|Default
+		Prod|Default = Prod|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0B4A42E0-4EAB-4811-8B9A-128DBA1C7F1B}.Development|Default.ActiveCfg = Development
-		{0B4A42E0-4EAB-4811-8B9A-128DBA1C7F1B}.Development|Default.Build.0 = Development
+		{0B4A42E0-4EAB-4811-8B9A-128DBA1C7F1B}.Dev|Default.ActiveCfg = Dev
+		{0B4A42E0-4EAB-4811-8B9A-128DBA1C7F1B}.Prod|Default.ActiveCfg = Prod
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
